@@ -6,7 +6,7 @@
           <slider v-if="recommends.length">
             <div v-for="(item, index) in recommends" :key="index">
               <a :href="item.linkUrl">
-                <img @load="loadImage" :src="item.picUrl" alt="">
+                <img class="needsclick" @load="loadImage" :src="item.picUrl" alt="">
               </a>
             </div>
           </slider>
@@ -26,11 +26,15 @@
           </ul>
         </div>
       </div>
+      <div class="loading-container" v-show="!discList.length">
+        <loading></loading>
+      </div>
     </scroll>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import Loading from 'base/loading/loading'
   import Scroll from 'base/scroll/scroll'
   import Slider from 'base/slider/slider'
   import {getRecommend, getDiscList} from 'api/recommend'
@@ -70,7 +74,8 @@
     },
     components: {
       Slider,
-      Scroll
+      Scroll,
+      Loading
     }
   }
 </script>
